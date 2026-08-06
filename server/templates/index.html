@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Plate Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111827;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1f2937;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #374151;
+            text-align: left;
+        }
+
+        th {
+            background: #374151;
+        }
+
+        tr:hover {
+            background: #2d3748;
+        }
+
+        .plate {
+            font-weight: bold;
+            color: #60a5fa;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>License Plate Dashboard</h1>
+
+    <div class="controls">
+
+        <button onclick="clearPlates()">
+            Clear All
+        </button>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>#</th>
+                <th>Camera</th>
+                <th>Plate Number</th>
+                <th>Bounding Box</th>
+                <th>OCR Timestamp</th>
+                <th>Received At</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="table-body">
+
+            {% for plate in plates %}
+
+            <tr>
+
+                <td>{{ loop.index }}</td>
+
+                <td>
+                    {{ plate.camera_id }}
+                </td>
+
+                <td class="plate">
+                    {{ plate.plate_number }}
+                </td>
+
+                <td>
+                    {{ plate.bbox }}
+                </td>
+
+                <td>
+                    {{ plate.timestamp }}
+                </td>
+
+                <td>
+                    {{ plate.received_at }}
+                </td>
+                <td>
+                    <img
+                        src="data:image/jpeg;base64,${plate.frame}"
+                        width="500"
+                    />
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <script>
+
+        async function refreshData() {
+
+            const response = await fetch("/api/plates")
+
+            const data = await response.json()
+
+            const tableBody =
+                document.getElementById("table-body")
+
+            tableBody.innerHTML = ""
+
+            data.reverse().forEach((plate, index) => {
+
+                const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${plate.camera_id}</td>
+                        <td class="plate">
+                            ${plate.plate_number}
+                        </td>
+                        <td>
+                            ${JSON.stringify(plate.bbox)}
+                        </td>
+                        <td>${plate.timestamp}</td>
+                        <td>${plate.received_at}</td>
+                    </tr>
+                `
+
+                tableBody.innerHTML += row
+            })
+        }
+
+        async function clearPlates() {
+
+            await fetch("/api/plates", {
+                method: "DELETE"
+            })
+
+            refreshData()
+        }
+
+        setInterval(refreshData, 2000)
+
+    </script>
+
+</body>
+
+</html>

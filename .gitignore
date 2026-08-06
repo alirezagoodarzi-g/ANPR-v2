@@ -1,0 +1,101 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+weights/
+OCR_backup/
+OCR_model/
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+OCR_backup/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+.coverage
+.coverage.*
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+
+# Type checkers
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Linters
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build caches
+.cache/
+.cache-loader/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Documentation builds
+docs/_build/
+
+# Local databases
+*.sqlite3
+*.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Poetry
+poetry.lock
+
+# PDM
+.pdm-python
+
+# Hatch
+.hatch/
+
+# Coverage reports
+coverage.xml
+
+# Python version manager
+.python-version

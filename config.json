@@ -1,0 +1,44 @@
+{
+    "app": {
+        "frame_skip": 5,
+        "duplicate_timeout_seconds": 10,
+        "save_debug_images": false,
+        "debug_image_dir": "debug",
+        "log_level": "INFO"
+    },
+
+    "api": {
+        "enabled": true,
+        "url": "http://127.0.0.1:8000/api/plates",
+        "timeout": 5,
+        "retry_interval_seconds": 10,
+
+        "send_full_frame": true,
+        "jpeg_quality": 70,
+        "max_frame_width": 1280
+    },
+
+    "queue": {
+        "enabled": true,
+        "max_size": 100,
+        "file_path": "cache/pending.json"
+    },
+
+    "yolo": {
+        "model_path": "weights/best.pt",
+        "confidence": 0.5,
+        "iou": 0.7,
+        "device": "cpu"
+    },
+
+    "ocr": {
+        "model_path": "OCR_model"
+    },
+
+    "cameras": [
+        {
+            "id": 1,
+            "source": 1
+        }
+    ]
+}
