@@ -302,25 +302,6 @@ This ensures detections are not lost during network interruptions.
 
 ---
 
-# Future Improvements
-
-* GPU inference support
-* Docker deployment
-* Database integration
-* Vehicle tracking
-* Web-based configuration
-* Live monitoring dashboard
-* Performance metrics
-* Multiple OCR engine support
-
----
-
-# License
-
-Specify your preferred license (MIT, Apache 2.0, GPL, etc.).
-
----
-
 # Author
 
 Developed as an Automatic Number Plate Recognition (ANPR) solution using YOLO-based detection and OCR for real-time vehicle identification.
